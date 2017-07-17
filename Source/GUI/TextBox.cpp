@@ -24,7 +24,7 @@ namespace GUI
     {
         m_text.setFont(ResourceHolder::getFont("rs"));
 
-        m_sprite.setSize({300, 100});
+        m_sprite.setSize({500, 100});
         m_sprite.setFillColor({200, 200, 255});
     }
 
@@ -43,6 +43,30 @@ namespace GUI
     void TextBox::handleInput(sf::Event e, const sf::RenderWindow& win)
     {
         m_sprite.testForInteration(win, e);
+
+
+
+        if (e.type == sf::Event::TextEntered && m_isActive)
+        {
+            unsigned char k = e.text.unicode;
+
+            if (k >= 32 && k <= 127)
+            {
+                m_pString->push_back(k);
+                if (exeedsSize())
+                {
+                    m_pString->pop_back();
+                }
+            }
+            else if (k == 8)
+            {
+                if (m_pString->length() <= 0)
+                    return;
+                m_pString->pop_back();
+            }
+            std::cout << m_pString->length() << std::endl;
+            updateText();
+        }
     }
 
     void TextBox::draw(sf::RenderWindow& window)
@@ -51,4 +75,17 @@ namespace GUI
         window.draw(m_text);
     }
 
+    void TextBox::updateText()
+    {
+        m_text.setString(*m_pString);
+        auto pos = m_sprite.getPosition();
+        m_text.setPosition( pos.x + m_sprite.getGlobalBounds().width  / 2 - m_text.getGlobalBounds().width / 2,
+                            pos.y + m_sprite.getGlobalBounds().height / 2 - m_text.getGlobalBounds().height / 2);
+    }
+
+    bool TextBox::exeedsSize()
+    {
+        return m_sprite.getLocalBounds().width <= m_text.getLocalBounds().width + 20;
+
+    }
 }

@@ -21,6 +21,9 @@ namespace GUI
 
 
         private:
+            void updateText();
+            bool exeedsSize();
+
             ClickableRectangle m_sprite;
             sf::Text m_text;
 
