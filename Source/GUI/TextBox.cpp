@@ -44,28 +44,33 @@ namespace GUI
     {
         m_sprite.testForInteration(win, e);
 
-
-
         if (e.type == sf::Event::TextEntered && m_isActive)
         {
+            //Get the key that was entered
             unsigned char k = e.text.unicode;
 
+            //Test if it within the "Type-able keys eg aA to zZ and 0 to 9
             if (k >= 32 && k <= 127)
             {
                 m_pString->push_back(k);
-                if (exeedsSize())
-                {
-                    m_pString->pop_back();
-                }
             }
-            else if (k == 8)
+            else if (k == 8) //Backspace
             {
                 if (m_pString->length() <= 0)
                     return;
                 m_pString->pop_back();
             }
-            std::cout << m_pString->length() << std::endl;
+
+            //Updates the SFML text
             updateText();
+
+            //Don't want the text to go over the size of the box
+            //If it does, then backspace it
+            if (exeedsSize())
+            {
+                m_pString->pop_back();
+                updateText();
+            }
         }
     }
 
@@ -85,7 +90,7 @@ namespace GUI
 
     bool TextBox::exeedsSize()
     {
-        return m_sprite.getLocalBounds().width <= m_text.getLocalBounds().width + 20;
+        return m_sprite.getLocalBounds().width <= m_text.getLocalBounds().width;
 
     }
 }
