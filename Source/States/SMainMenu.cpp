@@ -3,6 +3,7 @@
 namespace State
 {
     StateMenu::StateMenu(Application& application)
+    :   StateBase   (application)
     {
 
     }

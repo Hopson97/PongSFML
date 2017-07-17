@@ -1,6 +1,8 @@
 #ifndef COMPONENT_H_INCLUDED
 #define COMPONENT_H_INCLUDED
 
+#include <SFML/Graphics.hpp>
+
 namespace GUI
 {
     class Component

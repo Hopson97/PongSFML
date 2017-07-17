@@ -11,12 +11,12 @@ namespace GUI
     class ColumnMenu
     {
         public:
-            ColumnGUI() = default;
+            ColumnMenu() = default;
 
-            template<typename... Args>
+            template<typename C, typename... Args>
             void addComponent(Args&&... args)
             {
-                m_components.push_back(std::make_unique<T>(std::forward<Args>(args)...));
+                m_components.push_back(std::make_unique<C>(std::forward<Args>(args)...));
                 auto& comp = *m_components.back();
             }
 
