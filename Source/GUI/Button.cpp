@@ -10,6 +10,7 @@ namespace GUI
         m_text.setString(std::move(text));
 
         m_sprite.setSize({500, 200});
+        m_sprite.setFillColor(sf::Color::Blue);
     }
 
     sf::Vector2f Button::getSize() const
@@ -27,7 +28,7 @@ namespace GUI
     void Button::draw(sf::RenderWindow& window)
     {
         window.draw(m_sprite);
-
+        window.draw(m_text);
     }
 
 }

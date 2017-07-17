@@ -3,8 +3,9 @@
 namespace GUI
 {
     ColumnMenu::ColumnMenu(const sf::RenderWindow& window)
+    :   m_basePosition(window.getSize().x / 2,
+                       25)
     {
-
     }
 
     void ColumnMenu::handleEvents(sf::Event e)

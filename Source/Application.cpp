@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include "States/SPlaying.h"
+#include "States/SMainMenu.h"
 
 #include <cstdint>
 #include <iostream>
@@ -9,7 +9,7 @@ Application::Application(std::string&& appName)
 :   m_window    ({1280, 720}, std::move(appName))
 {
     m_window.setFramerateLimit(60);
-    pushState<StatePlaying>(*this);
+    pushState<State::StateMenu>(*this);
 }
 
 
