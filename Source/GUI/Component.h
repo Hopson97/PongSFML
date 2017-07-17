@@ -11,12 +11,10 @@ namespace GUI
             Component() = default;
             virtual ~Component() = default;
 
-            virtual void setPosition(const sf::Vector2f& pos) = 0;
-            virtual void draw       (sf::RenderWindow& window) = 0;
+            virtual sf::Vector2f getSize    () const = 0;
 
-
-        private:
-
+            virtual void setPosition        (const sf::Vector2f& pos) = 0;
+            virtual void draw               (sf::RenderWindow& window) = 0;
     };
 }
 

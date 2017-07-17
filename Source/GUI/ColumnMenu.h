@@ -11,7 +11,7 @@ namespace GUI
     class ColumnMenu
     {
         public:
-            ColumnMenu() = default;
+            ColumnMenu(const sf::RenderWindow& window);
 
             template<typename C, typename... Args>
             void addComponent(Args&&... args)
@@ -20,8 +20,13 @@ namespace GUI
                 auto& comp = *m_components.back();
             }
 
+            void handleEvents(sf::Event e);
+
+            void draw(sf::RenderWindow& window);
+
         private:
             std::vector<std::unique_ptr<Component>> m_components;
+            sf::Vector2f m_basePosition;
 
     };
 }

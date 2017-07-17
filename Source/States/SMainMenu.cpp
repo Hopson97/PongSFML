@@ -1,9 +1,12 @@
 #include "SMainMenu.h"
 
+#include "../Application.h"
+
 namespace State
 {
     StateMenu::StateMenu(Application& application)
     :   StateBase   (application)
+    ,   m_frontMenu (application.getWindow())
     {
 
     }

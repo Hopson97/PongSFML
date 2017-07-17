@@ -78,3 +78,9 @@ StateBase& Application::currentState()
     }
     return *m_states.back();
 }
+
+
+const sf::RenderWindow& Application::getWindow() const
+{
+    return m_window;
+}
