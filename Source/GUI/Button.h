@@ -14,11 +14,16 @@ namespace GUI
 
             sf::Vector2f getSize    () const override;
             void setPosition        (const sf::Vector2f& pos)   override;
+
+            void handleInput        (sf::Event e, const sf::RenderWindow& win) override;
             void draw               (sf::RenderWindow& window)  override;
+
 
         private:
             sf::RectangleShape m_sprite;
             sf::Text m_text;
+
+            std::function<void(void)> m_func;
     };
 }
 

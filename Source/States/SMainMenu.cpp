@@ -1,5 +1,7 @@
 #include "SMainMenu.h"
 
+#include <iostream>
+
 #include "../Application.h"
 
 #include "../GUI/Button.h"
@@ -10,7 +12,10 @@ namespace State
     :   StateBase   (application)
     ,   m_frontMenu (application.getWindow())
     {
-        m_frontMenu.addComponent<GUI::Button>("Testttt", [](){});
+        m_frontMenu.addComponent<GUI::Button>("Testttt", []()
+        {
+            std::cout << "Pressed\n";
+        });
     }
 
     void StateMenu::handleInput()
@@ -20,7 +25,7 @@ namespace State
 
     void StateMenu::handleEvent(sf::Event e)
     {
-        m_frontMenu.handleEvents(e);
+        m_frontMenu.handleEvents(e, m_pApplication->getWindow());
     }
 
     void StateMenu::update(float dt)

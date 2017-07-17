@@ -8,11 +8,11 @@ namespace GUI
     {
     }
 
-    void ColumnMenu::handleEvents(sf::Event e)
+    void ColumnMenu::handleEvents(sf::Event e, const sf::RenderWindow& win)
     {
         for (auto& comp : m_components)
         {
-
+            comp->handleInput(e, win);
         }
     }
 

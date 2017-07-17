@@ -21,7 +21,7 @@ namespace GUI
                 comp.setPosition({m_basePosition.x - comp.getSize().x / 2, m_basePosition.y});
             }
 
-            void handleEvents(sf::Event e);
+            void handleEvents(sf::Event e, const sf::RenderWindow& win);
 
             void draw(sf::RenderWindow& window);
 
