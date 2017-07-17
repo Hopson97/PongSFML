@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include "States/SPlaying.h"
+#include "States/SMainMenu.h"
 
 #include <cstdint>
 #include <iostream>
@@ -9,7 +9,7 @@ Application::Application(std::string&& appName)
 :   m_window    ({1280, 720}, std::move(appName))
 {
     m_window.setFramerateLimit(60);
-    pushState<StatePlaying>(*this);
+    pushState<State::StateMenu>(*this);
 }
 
 
@@ -77,4 +77,10 @@ StateBase& Application::currentState()
         throw std::out_of_range("Tried to access game state, but there are none!");
     }
     return *m_states.back();
+}
+
+
+const sf::RenderWindow& Application::getWindow() const
+{
+    return m_window;
 }
