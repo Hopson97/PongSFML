@@ -4,7 +4,9 @@
 
 #include "../Application.h"
 
-#include "../GUI/Button.h"
+#include "../GUI/TextBox.h"
+
+std::string test;
 
 namespace State
 {
@@ -12,10 +14,7 @@ namespace State
     :   StateBase   (application)
     ,   m_frontMenu (application.getWindow())
     {
-        m_frontMenu.addComponent<GUI::Button>("Testttt", []()
-        {
-            std::cout << "Pressed\n";
-        });
+        m_frontMenu.addComponent<GUI::TextBox>(test);
     }
 
     void StateMenu::handleInput()

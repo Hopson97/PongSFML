@@ -1,5 +1,5 @@
-#ifndef BUTTON_H_INCLUDED
-#define BUTTON_H_INCLUDED
+#ifndef TEXTBOX_H_INCLUDED
+#define TEXTBOX_H_INCLUDED
 
 #include <functional>
 
@@ -8,10 +8,10 @@
 
 namespace GUI
 {
-    class Button : public Component
+    class TextBox : public Component
     {
         public:
-            Button(std::string&& text, std::function<void(void)> func);
+            TextBox(std::string& stringRef);
 
             sf::Vector2f getSize    () const override;
             void setPosition        (const sf::Vector2f& pos)   override;
@@ -23,7 +23,10 @@ namespace GUI
         private:
             ClickableRectangle m_sprite;
             sf::Text m_text;
+
+            std::string* m_pString = nullptr;
+            bool m_isActive = false;
     };
 }
 
-#endif // BUTTON_H_INCLUDED
+#endif // TEXTBOX_H_INCLUDED
