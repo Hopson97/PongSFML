@@ -50,3 +50,7 @@ bool ClickableRectangle::isClick(sf::Event e)
         return false;
     }
 }
+
+void ClickableRectangle::reset() {
+    m_onOffClick();
+}

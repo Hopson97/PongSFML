@@ -49,10 +49,16 @@ namespace GUI
             //Get the key that was entered
             unsigned char k = e.text.unicode;
 
+            std::cout << static_cast<int>(k) << std::endl;
+
             //Test if it within the "Type-able keys eg aA to zZ and 0 to 9
             if (k >= 32 && k <= 127)
             {
                 m_pString->push_back(k);
+            }
+            else if (k == 13 || k == 27) // Enter[13] or Escape[27] causes textbox to Lose focus)
+            {
+                m_sprite.reset();
             }
             else if (k == 8) //Backspace
             {
@@ -66,7 +72,7 @@ namespace GUI
 
             //Don't want the text to go over the size of the box
             //If it does, then backspace it
-            if (exeedsSize())
+            if (exceedsSize())
             {
                 m_pString->pop_back();
                 updateText();
@@ -88,7 +94,7 @@ namespace GUI
                             pos.y + m_sprite.getGlobalBounds().height / 2 - m_text.getGlobalBounds().height / 2);
     }
 
-    bool TextBox::exeedsSize()
+    bool TextBox::exceedsSize()
     {
         return m_sprite.getLocalBounds().width <= m_text.getLocalBounds().width;
 

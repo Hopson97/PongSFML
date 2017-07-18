@@ -14,6 +14,7 @@ class ClickableRectangle : public sf::RectangleShape
                            std::function<void(void)> onOffClick = [](){});
 
         void testForInteration(const sf::RenderWindow& window, sf::Event e);
+        void reset();
 
     private:
         bool isClick(sf::Event e);

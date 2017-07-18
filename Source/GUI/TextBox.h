@@ -22,7 +22,7 @@ namespace GUI
 
         private:
             void updateText();
-            bool exeedsSize();
+            bool exceedsSize();
 
             ClickableRectangle m_sprite;
             sf::Text m_text;
