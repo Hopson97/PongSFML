@@ -11,7 +11,7 @@ namespace GUI
                     [&](){ m_sprite.setFillColor({150, 150, 255}); },
                     [&](){ m_sprite.setFillColor({200, 200, 255}); })
     {
-        m_text.setFont(ResourceHolder::getFont("rs"));
+        m_text.setFont(ResourceHolder::getFont("FORCED_SQUARE"));
         m_text.setString(std::move(text));
 
         m_sprite.setSize({300, 100});

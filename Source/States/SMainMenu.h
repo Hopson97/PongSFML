@@ -4,6 +4,7 @@
 #include "SBase.h"
 
 #include "../GUI/ColumnMenu.h"
+#include "../GUI/GameTitle.h"
 
 namespace State
 {
@@ -20,6 +21,8 @@ namespace State
 
         private:
             GUI::ColumnMenu m_frontMenu;
+
+            GameTitle m_game_title;
     };
 }
 
