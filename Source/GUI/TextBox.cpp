@@ -22,9 +22,9 @@ namespace GUI
                     })
     ,   m_pString   (&strRef)
     {
-        m_text.setFont(ResourceHolder::getFont("rs"));
+        m_text.setFont(ResourceHolder::getFont("imagine_font"));
 
-        m_sprite.setSize({500, 100});
+        m_sprite.setSize({500, 50});
         m_sprite.setFillColor({200, 200, 255});
     }
 
@@ -91,7 +91,7 @@ namespace GUI
         m_text.setString(*m_pString);
         auto pos = m_sprite.getPosition();
         m_text.setPosition( pos.x + m_sprite.getGlobalBounds().width  / 2 - m_text.getGlobalBounds().width / 2,
-                            pos.y + m_sprite.getGlobalBounds().height / 2 - m_text.getGlobalBounds().height / 2);
+                            pos.y + m_sprite.getGlobalBounds().height / 2 - m_text.getGlobalBounds().height);
     }
 
     bool TextBox::exceedsSize()
