@@ -19,11 +19,12 @@ namespace GUI
                 m_components.push_back(std::make_unique<C>(std::forward<Args>(args)...));
                 auto& comp = *m_components.back();
                 comp.setPosition({m_basePosition.x - comp.getSize().x / 2, m_basePosition.y});
+                m_basePosition.y += comp.getSize().y;
             }
 
-            void handleEvents(sf::Event e, const sf::RenderWindow& win);
-
-            void draw(sf::RenderWindow& window);
+            void handleEvents   (sf::Event e, const sf::RenderWindow& win);
+            void update         (float dt);
+            void draw           (sf::RenderWindow& window);
 
         private:
             std::vector<std::unique_ptr<Component>> m_components;

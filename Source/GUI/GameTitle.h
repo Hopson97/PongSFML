@@ -6,6 +6,8 @@
 #include "../ResourceManager/ResourceHolder.h"
 #include <SFML/Graphics.hpp>
 
+#include "Component.h"
+
 const int LETTER_FONT   = 96;
 const int LETTER_OFFSET = -16;
 const int WAVE_HEIGHT   = 12;
@@ -30,13 +32,14 @@ class TitleLetter
         float tick = 0;
 };
 
-class GameTitle
+class GameTitle : public GUI::Component
 {
     public:
-        GameTitle(const char* title_string, sf::Vector2i position);
+        GameTitle(const std::string& title, sf::Vector2i position);
 
-        void update(float dt);
-        void draw(sf::RenderWindow& window);
+        sf::Vector2f getSize    () const override;
+        void update             (float dt) override;
+        void draw               (sf::RenderWindow& window) override;
 
     private:
         std::vector<TitleLetter> m_letters;

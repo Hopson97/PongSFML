@@ -22,7 +22,7 @@ namespace State
         private:
             GUI::ColumnMenu m_frontMenu;
 
-            GameTitle m_game_title;
+
     };
 }
 

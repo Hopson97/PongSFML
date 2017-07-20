@@ -2,18 +2,18 @@
 
 // GAME TITLE OBJECT //
 
-GameTitle::GameTitle(const char* title_string, sf::Vector2i position)
+GameTitle::GameTitle(const std::string& title, sf::Vector2i position)
 {
-    for (int i = 0; title_string[i] != '\0'; i++)
+    for (unsigned i = 0; i < title.length(); i++)
     {
         int x = position.x + (i*(LETTER_FONT+LETTER_OFFSET));
         int y = position.y;
 
         // "I" doesn't want to cooperate, smh
-        if (title_string[i] == 'i')
+        if (title[i] == 'i')
             x += LETTER_FONT/4;
 
-        TitleLetter t_letter = TitleLetter(title_string[i], x, y, i);
+        TitleLetter t_letter = TitleLetter(title[i], x, y, i);
         m_letters.push_back(std::move(t_letter));
     }
 }
@@ -29,6 +29,12 @@ void GameTitle::draw(sf::RenderWindow& window)
     for (auto& t_letter : m_letters)
         t_letter.draw(window);
 }
+
+sf::Vector2f GameTitle::getSize () const
+{
+    return {0, 200};
+}
+
 
 // TITLE LETTER OBJECT //
 

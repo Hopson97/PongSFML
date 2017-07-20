@@ -13,8 +13,8 @@ namespace State
     StateMenu::StateMenu(Application& application)
     :   StateBase   (application)
     ,   m_frontMenu (application.getWindow())
-    ,   m_game_title("Online Pong", sf::Vector2i(190,20))
     {
+        m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
         m_frontMenu.addComponent<GUI::TextBox>(test);
     }
 
@@ -30,7 +30,7 @@ namespace State
 
     void StateMenu::update(float dt)
     {
-        m_game_title.update(dt);
+        m_frontMenu.update(dt);
     }
 
     void StateMenu::fixedUpdate(float dt)
@@ -41,6 +41,6 @@ namespace State
     void StateMenu::draw(sf::RenderWindow& window)
     {
         m_frontMenu.draw(window);
-        m_game_title.draw(window);
+
     }
 }

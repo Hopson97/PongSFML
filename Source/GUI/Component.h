@@ -13,9 +13,10 @@ namespace GUI
 
             virtual sf::Vector2f getSize    () const = 0;
 
-            virtual void setPosition        (const sf::Vector2f& pos) = 0;
+            virtual void setPosition        (const sf::Vector2f& pos){}
 
-            virtual void handleInput        (sf::Event e, const sf::RenderWindow& win) = 0;
+            virtual void update             (float dt){}
+            virtual void handleInput        (sf::Event e, const sf::RenderWindow& win){}
             virtual void draw               (sf::RenderWindow& window) = 0;
     };
 }

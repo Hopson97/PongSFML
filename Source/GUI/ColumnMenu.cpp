@@ -3,8 +3,7 @@
 namespace GUI
 {
     ColumnMenu::ColumnMenu(const sf::RenderWindow& window)
-    :   m_basePosition(window.getSize().x / 2,
-                       400)
+    :   m_basePosition(window.getSize().x / 2, 25)
     {
     }
 
@@ -13,6 +12,14 @@ namespace GUI
         for (auto& comp : m_components)
         {
             comp->handleInput(e, win);
+        }
+    }
+
+    void ColumnMenu::update(float dt)
+    {
+        for (auto& comp : m_components)
+        {
+            comp->update(dt);
         }
     }
 
