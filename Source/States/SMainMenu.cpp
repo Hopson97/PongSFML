@@ -18,7 +18,7 @@ namespace State
     ,   m_frontMenu (application.getWindow())
     {
         m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
-        m_frontMenu.addComponent<GUI::TextBox>("LABEL TEST", test);
+        m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
     }
 
     void StateMenu::handleInput()

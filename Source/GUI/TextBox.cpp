@@ -11,12 +11,12 @@ namespace GUI
     TextBox::TextBox(std::string&& label, std::string& strRef)
     :   m_sprite    ([&]() {
                         m_isActive = true;
-                        m_sprite.setFillColor({150, 150, 255});
+                        m_sprite.setFillColor({120, 120, 120});
                     },
                     NONE, NONE,
                     [&]() {
                         m_isActive = false;
-                        m_sprite.setFillColor({200, 200, 255});
+                        m_sprite.setFillColor({150, 150, 150});
                     })
     ,   m_label     (std::move(label))
     ,   m_pString   (&strRef)
@@ -25,7 +25,7 @@ namespace GUI
         update(0);
 
         m_sprite.setSize({500, 50});
-        m_sprite.setFillColor({200, 200, 255});
+        m_sprite.setFillColor({150, 150, 150});
     }
 
     sf::Vector2f TextBox::getSize() const
@@ -82,9 +82,16 @@ namespace GUI
 
     const std::string& TextBox::getString ()
     {
-        return m_pString->empty() ?
-            m_label :
-            *m_pString;
+        if( m_pString->empty())
+        {
+            m_text.setFillColor({200, 200, 200});
+            return m_label;
+        }
+        else
+        {
+            m_text.setFillColor({255, 255, 255});
+            return *m_pString;
+        }
     }
 
     void TextBox::update(float dt)
