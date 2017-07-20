@@ -19,6 +19,14 @@ namespace State
     {
         m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
         m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
+
+        // Create background shader
+        if (!m_background_shader.loadFromFile("Source/Shaders/Menu_Background.frag", sf::Shader::Fragment))
+        {
+            std::cout << "Error loading 'Menu_Background.frag' shader" << std::endl;
+        }
+        quad.setFillColor(sf::Color(255,255,255,255));
+        quad.setSize(sf::Vector2f(application.getWindow().getSize().x, application.getWindow().getSize().y));
     }
 
     void StateMenu::handleInput()
@@ -33,6 +41,8 @@ namespace State
 
     void StateMenu::update(float dt)
     {
+        m_shader_time += dt;
+        m_background_shader.setParameter("t", m_shader_time);
         m_frontMenu.update(dt);
     }
 
@@ -43,6 +53,8 @@ namespace State
 
     void StateMenu::draw(sf::RenderWindow& window)
     {
+        window.draw(quad, &m_background_shader);
+
         m_frontMenu.draw(window);
 
     }
