@@ -8,21 +8,21 @@
 
 namespace GUI
 {
-    TextBox::TextBox(std::string& strRef)
-    :   m_sprite    ( [&]()
-                    {
+    TextBox::TextBox(std::string&& label, std::string& strRef)
+    :   m_sprite    ([&]() {
                         m_isActive = true;
                         m_sprite.setFillColor({150, 150, 255});
                     },
                     NONE, NONE,
-                    [&]()
-                    {
+                    [&]() {
                         m_isActive = false;
                         m_sprite.setFillColor({200, 200, 255});
                     })
+    ,   m_label     (std::move(label))
     ,   m_pString   (&strRef)
     {
         m_text.setFont(ResourceHolder::getFont("imagine_font"));
+        update(0);
 
         m_sprite.setSize({500, 50});
         m_sprite.setFillColor({200, 200, 255});
@@ -62,22 +62,36 @@ namespace GUI
             }
             else if (k == 8) //Backspace
             {
-                if (m_pString->length() <= 0)
-                    return;
-                m_pString->pop_back();
+                //prevents popping back an empty string
+                if (m_pString->length() > 0)
+                    m_pString->pop_back();
             }
 
             //Updates the SFML text
-            updateText();
+            //updateText();
 
             //Don't want the text to go over the size of the box
             //If it does, then backspace it
             if (exceedsSize())
             {
                 m_pString->pop_back();
-                updateText();
+                //updateText();
             }
         }
+    }
+
+    const std::string& TextBox::getString ()
+    {
+        return m_pString->empty() ?
+            m_label :
+            *m_pString;
+    }
+
+    void TextBox::update(float dt)
+    {
+        std::cout << getString() << "\n";
+        m_text.setString(getString());
+        updateText();
     }
 
     void TextBox::draw(sf::RenderWindow& window)
@@ -88,7 +102,6 @@ namespace GUI
 
     void TextBox::updateText()
     {
-        m_text.setString(*m_pString);
         auto pos = m_sprite.getPosition();
         m_text.setPosition( pos.x + m_sprite.getGlobalBounds().width  / 2 - m_text.getGlobalBounds().width / 2,
                             pos.y + m_sprite.getGlobalBounds().height / 2 - m_text.getGlobalBounds().height);

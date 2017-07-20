@@ -6,7 +6,10 @@
 
 #include "../GUI/TextBox.h"
 
-std::string test;
+namespace
+{
+    std::string test;
+}
 
 namespace State
 {
@@ -15,7 +18,7 @@ namespace State
     ,   m_frontMenu (application.getWindow())
     {
         m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
-        m_frontMenu.addComponent<GUI::TextBox>(test);
+        m_frontMenu.addComponent<GUI::TextBox>("LABEL TEST", test);
     }
 
     void StateMenu::handleInput()
