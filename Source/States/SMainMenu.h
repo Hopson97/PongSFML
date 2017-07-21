@@ -5,6 +5,9 @@
 
 #include "../GUI/ColumnMenu.h"
 #include "../GUI/GameTitle.h"
+#include "../GUI/Button.h"
+
+#include <memory>
 
 namespace State
 {
@@ -25,6 +28,9 @@ namespace State
             sf::Shader m_background_shader;
             sf::RectangleShape quad;
             float m_shader_time = 0.0f;
+
+            std::unique_ptr<GUI::Button> m_host_button;
+            std::unique_ptr<GUI::Button> m_connect_button;
     };
 }
 

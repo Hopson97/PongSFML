@@ -20,6 +20,10 @@ namespace State
         m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
         m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
 
+        m_host_button = std::make_unique<GUI::Button>("Host",
+                        []() { return; });
+        m_host_button->setPosition(sf::Vector2f(application.getWindow().getSize().x/2 - 150, 300));
+
         // Create background shader
         if (!m_background_shader.loadFromFile("Source/Shaders/Menu_Background.frag", sf::Shader::Fragment))
         {
@@ -56,6 +60,7 @@ namespace State
         window.draw(quad, &m_background_shader);
 
         m_frontMenu.draw(window);
+        m_host_button->draw(window);
 
     }
 }
