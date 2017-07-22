@@ -8,8 +8,8 @@ namespace GUI
 {
     Button::Button(std::string&& text, std::function<void(void)> func)
     :   m_sprite    (func,
-                    [&](){ m_sprite.setFillColor({150, 150, 255}); },
-                    [&](){ m_sprite.setFillColor({200, 200, 255}); })
+                    [&](){ m_sprite.setFillColor({41, 128, 185}); },
+                    [&](){ m_sprite.setFillColor({52, 152, 219}); })
     {
         m_text.setFont(ResourceHolder::getFont("imagine_font"));
         m_text.setString(std::move(text));
