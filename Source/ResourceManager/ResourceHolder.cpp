@@ -1,9 +1,9 @@
 #include "ResourceHolder.h"
 
 ResourceHolder::ResourceHolder() noexcept
-:   textures        ("res/txrs/",   "png")
-,   fonts           ("res/fonts/",      "ttf")
-,   soundBuffers    ("res/sfx",         "ogg")
+:   textures        ("Resources/Textures/", "png")
+,   fonts           ("Resources/Fonts/",    "ttf")
+,   soundBuffers    ("Resources/Sounds",    "ogg")
 { }
 
 ResourceHolder& ResourceHolder::get()
