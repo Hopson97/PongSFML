@@ -23,6 +23,8 @@ namespace State
             void draw           (sf::RenderWindow& window);
 
         private:
+            void initMenus();
+
             GUI::ColumnMenu m_frontMenu;
 
             sf::Shader m_background_shader;
