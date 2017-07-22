@@ -18,7 +18,7 @@ void main( void ) {
 
     vec3 pixel = vec3(.3,.3,.3);
     pixel -= 0.1*stripes;
-    pixel = mix(pixel, pixel * vignette, 0.5);
+    pixel = mix(pixel, pixel * vec3(vignette), 0.5);
 
 	gl_FragColor = vec4(pixel.xyz, 1.0);
 
