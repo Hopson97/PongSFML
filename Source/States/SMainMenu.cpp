@@ -46,7 +46,6 @@ namespace State
     {
         m_shader_time += dt;
         m_background_shader.setUniform("t", m_shader_time);
-       // m_background_shader.setParameter("texture", sf::Shader::CurrentTexture);
         m_frontMenu.update(dt);
 
         m_gameTitle->update(dt);
@@ -59,9 +58,6 @@ namespace State
 
     void StateMenu::draw(sf::RenderWindow& window)
     {
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        m_background_shader.setUniform("mouse", sf::Vector2f(mousePos.x, mousePos.y ));
-
         m_background_shader.setUniform("resolution", sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
         window.draw(quad, &m_background_shader);
 

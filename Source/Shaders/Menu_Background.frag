@@ -1,3 +1,5 @@
+#version 120
+
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -8,8 +10,7 @@ uniform vec2 resolution;
 void main( void ) {
 	vec2 p = gl_FragCoord.xy / resolution.xy;
 
-
-    vec3 stripes = step(0.25, mod(p.x - 0.2*t, 0.5));
+    vec3 stripes = vec3(step(0.25, mod(p.x - 0.2*t, 0.5)));
 
     // vignette
     vec2 center = p - vec2(1,1);
@@ -21,5 +22,4 @@ void main( void ) {
     pixel = mix(pixel, pixel * vec3(vignette), 0.5);
 
 	gl_FragColor = vec4(pixel.xyz, 1.0);
-
 }
