@@ -34,6 +34,8 @@ namespace State
 
             std::unique_ptr<GUI::Button> m_host_button;
             std::unique_ptr<GUI::Button> m_connect_button;
+
+            sf::Text m_footer;
     };
 }
 

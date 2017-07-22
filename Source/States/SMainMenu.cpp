@@ -19,6 +19,10 @@ namespace State
     {
         initMenus();
 
+        sf::Vector2u w_size = application.getWindow().getSize();
+        sf::FloatRect t_size = m_footer.getGlobalBounds();
+        m_footer.setPosition(w_size.x-t_size.width-10, w_size.y-t_size.height*2-10);
+
         // Create background shader
         if (!m_background_shader.loadFromFile("Source/Shaders/Menu_Background.frag", sf::Shader::Fragment))
         {
@@ -62,15 +66,21 @@ namespace State
         window.draw(quad, &m_background_shader);
 
         m_frontMenu.draw(window);
+
+        window.draw(m_footer);
         m_gameTitle->draw(window);
     }
 
     void StateMenu::initMenus()
     {
-        m_gameTitle = std::make_unique<GameTitle>("Online Pong", sf::Vector2i(190,20));
+        m_gameTitle = std::make_unique<GameTitle>("ExtremePong", sf::Vector2i(210,30));
         m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
 
         m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
         m_frontMenu.addComponent<GUI::Button>("Connect", []() { return; });
+
+        m_footer.setFont(ResourceHolder::getFont("imagine_font"));
+        m_footer.setString("A game made by the Hopson Server");
+        m_footer.setCharacterSize(24);
     }
 }
