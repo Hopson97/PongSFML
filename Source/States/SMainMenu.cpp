@@ -17,11 +17,15 @@ namespace State
     :   StateBase   (application)
     ,   m_frontMenu (application.getWindow())
     {
+
         m_gameTitle = std::make_unique<GameTitle>("Online Pong", sf::Vector2i(190,20));
         //m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
         m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
         m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
         m_frontMenu.addComponent<GUI::Button>("Connect", []() { return; });
+
+        initMenus();
+
 
         // Create background shader
         if (!m_background_shader.loadFromFile("Source/Shaders/Menu_Background.frag", sf::Shader::Fragment))
@@ -45,7 +49,7 @@ namespace State
     void StateMenu::update(float dt)
     {
         m_shader_time += dt;
-        m_background_shader.setParameter("t", m_shader_time);
+        m_background_shader.setUniform("t", m_shader_time);
        // m_background_shader.setParameter("texture", sf::Shader::CurrentTexture);
         m_frontMenu.update(dt);
 
@@ -60,12 +64,21 @@ namespace State
     void StateMenu::draw(sf::RenderWindow& window)
     {
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        m_background_shader.setParameter("mouse", sf::Vector2f(mousePos.x, mousePos.y ));
+        m_background_shader.setUniform("mouse", sf::Vector2f(mousePos.x, mousePos.y ));
 
-        m_background_shader.setParameter("resolution", sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
+        m_background_shader.setUniform("resolution", sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
         window.draw(quad, &m_background_shader);
 
         m_frontMenu.draw(window);
         m_gameTitle->draw(window);
+    }
+
+    void StateMenu::initMenus()
+    {
+        m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
+        m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
+
+        m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
+        m_frontMenu.addComponent<GUI::Button>("Connect", []() { return; });
     }
 }

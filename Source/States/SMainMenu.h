@@ -23,6 +23,8 @@ namespace State
             void draw           (sf::RenderWindow& window);
 
         private:
+            void initMenus();
+
             GUI::ColumnMenu m_frontMenu;
             std::unique_ptr<GameTitle> m_gameTitle;
 
