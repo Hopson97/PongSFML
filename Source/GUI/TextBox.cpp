@@ -96,7 +96,7 @@ namespace GUI
 
     void TextBox::update(float dt)
     {
-        std::cout << getString() << "\n";
+        //std::cout << getString() << "\n";
         m_text.setString(getString());
         updateText();
     }

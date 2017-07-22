@@ -19,7 +19,7 @@ namespace GUI
                 m_components.push_back(std::make_unique<C>(std::forward<Args>(args)...));
                 auto& comp = *m_components.back();
                 comp.setPosition({m_basePosition.x - comp.getSize().x / 2, m_basePosition.y});
-                m_basePosition.y += comp.getSize().y;
+                m_basePosition.y += comp.getSize().y+20;
             }
 
             void handleEvents   (sf::Event e, const sf::RenderWindow& win);

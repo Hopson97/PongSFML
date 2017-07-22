@@ -11,10 +11,10 @@ namespace GUI
                     [&](){ m_sprite.setFillColor({150, 150, 255}); },
                     [&](){ m_sprite.setFillColor({200, 200, 255}); })
     {
-        m_text.setFont(ResourceHolder::getFont("FORCED_SQUARE"));
+        m_text.setFont(ResourceHolder::getFont("imagine_font"));
         m_text.setString(std::move(text));
 
-        m_sprite.setSize({300, 100});
+        m_sprite.setSize({300, 50});
         m_sprite.setFillColor({200, 200, 255});
     }
 
@@ -27,7 +27,7 @@ namespace GUI
     {
         m_sprite.setPosition(pos);
         m_text.setPosition(pos.x + m_sprite.getGlobalBounds().width  / 2 - m_text.getGlobalBounds().width / 2,
-                           pos.y + m_sprite.getGlobalBounds().height / 2 - m_text.getGlobalBounds().height / 2);
+                           pos.y + m_sprite.getGlobalBounds().height / 3.5 - m_text.getGlobalBounds().height / 2);
     }
 
     void Button::handleInput(sf::Event e, const sf::RenderWindow& win)
