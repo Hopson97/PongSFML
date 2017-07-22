@@ -9,8 +9,17 @@ void main( void ) {
 	vec2 p = gl_FragCoord.xy / resolution.xy;
 
 
+    vec3 stripes = step(0.25, mod(p.x - 0.2*t, 0.5));
 
+    // vignette
+    vec2 center = p - vec2(1,1);
+    float len = length(center);
+    float vignette = smoothstep(1.5, 0.5, len);
 
-	gl_FragColor = vec4(cos(t)/2 + sin(p.y)/2, p.y - sin(t), p.x/p.y, 0.5);
+    vec3 pixel = vec3(.3,.3,.3);
+    pixel -= 0.1*stripes;
+    pixel = mix(pixel, pixel * vignette, 0.5);
+
+	gl_FragColor = vec4(pixel.xyz, 1.0);
 
 }

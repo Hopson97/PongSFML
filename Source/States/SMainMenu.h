@@ -24,6 +24,7 @@ namespace State
 
         private:
             GUI::ColumnMenu m_frontMenu;
+            std::unique_ptr<GameTitle> m_gameTitle;
 
             sf::Shader m_background_shader;
             sf::RectangleShape quad;

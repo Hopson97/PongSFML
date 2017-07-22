@@ -6,6 +6,8 @@
 
 #include "Component.h"
 
+const int INITIAL_Y_POS = 225;
+
 namespace GUI
 {
     class ColumnMenu
@@ -19,6 +21,8 @@ namespace GUI
                 m_components.push_back(std::make_unique<C>(std::forward<Args>(args)...));
                 auto& comp = *m_components.back();
                 comp.setPosition({m_basePosition.x - comp.getSize().x / 2, m_basePosition.y});
+
+                update_base_size(comp.getSize().y+20);
                 m_basePosition.y += comp.getSize().y+20;
             }
 
@@ -30,6 +34,8 @@ namespace GUI
             std::vector<std::unique_ptr<Component>> m_components;
             sf::Vector2f m_basePosition;
 
+            sf::RectangleShape m_base;
+            void update_base_size(float y_size);
     };
 }
 
