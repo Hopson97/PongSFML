@@ -17,15 +17,7 @@ namespace State
     :   StateBase   (application)
     ,   m_frontMenu (application.getWindow())
     {
-
-        m_gameTitle = std::make_unique<GameTitle>("Online Pong", sf::Vector2i(190,20));
-        //m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
-        m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
-        m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
-        m_frontMenu.addComponent<GUI::Button>("Connect", []() { return; });
-
         initMenus();
-
 
         // Create background shader
         if (!m_background_shader.loadFromFile("Source/Shaders/Menu_Background.frag", sf::Shader::Fragment))
@@ -75,7 +67,7 @@ namespace State
 
     void StateMenu::initMenus()
     {
-        m_frontMenu.addComponent<GameTitle>("Online Pong", sf::Vector2i(190,20));
+        m_gameTitle = std::make_unique<GameTitle>("Online Pong", sf::Vector2i(190,20));
         m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
 
         m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
