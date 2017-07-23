@@ -31,14 +31,8 @@ namespace State
             sf::Shader m_background_shader;
             sf::RectangleShape quad;
             float m_shader_time = 0.0f;
-<<<<<<< HEAD
-
-            std::unique_ptr<GUI::Button> m_host_button;
-            std::unique_ptr<GUI::Button> m_connect_button;
 
             sf::Text m_footer;
-=======
->>>>>>> origin/master
     };
 }
 
