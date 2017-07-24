@@ -28,6 +28,8 @@ namespace State
             GUI::ColumnMenu m_frontMenu;
             std::unique_ptr<GameTitle> m_gameTitle;
 
+            std::string m_ipAddress;
+
             sf::Shader m_background_shader;
             sf::RectangleShape quad;
             float m_shader_time = 0.0f;
