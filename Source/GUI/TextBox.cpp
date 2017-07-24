@@ -33,6 +33,11 @@ namespace GUI
         return m_sprite.getSize();
     }
 
+    sf::Vector2f TextBox::getPosition() const
+    {
+        return m_sprite.getPosition();
+    }
+
     void TextBox::setPosition(const sf::Vector2f& pos)
     {
         m_sprite.setPosition(pos);

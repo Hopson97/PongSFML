@@ -23,6 +23,11 @@ namespace GUI
         return m_sprite.getSize();
     }
 
+    sf::Vector2f Button::getPosition() const
+    {
+        return m_sprite.getPosition();
+    }
+
     void Button::setPosition(const sf::Vector2f& pos)
     {
         m_sprite.setPosition(pos);

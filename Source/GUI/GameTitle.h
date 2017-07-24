@@ -35,15 +35,17 @@ class TitleLetter
 class GameTitle : public GUI::Component
 {
     public:
-        GameTitle(const std::string& title, sf::Vector2i position);
+        GameTitle(const std::string& title, sf::Vector2f position);
 
         sf::Vector2f getSize    () const override;
+        sf::Vector2f getPosition() const override;
         void update             (float dt) override;
         void draw               (sf::RenderWindow& window) override;
 
     private:
         std::vector<TitleLetter> m_letters;
 
+        sf::Vector2f m_position;
 };
 
 #endif // GAMETITLE_H

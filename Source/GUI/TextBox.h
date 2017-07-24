@@ -14,6 +14,7 @@ namespace GUI
             TextBox(std::string&& label, std::string& stringRef);
 
             sf::Vector2f getSize    () const override;
+            sf::Vector2f getPosition() const override;
             void setPosition        (const sf::Vector2f& pos)   override;
 
             void handleInput    (sf::Event e, const sf::RenderWindow& win) override;

@@ -12,6 +12,7 @@ namespace GUI
             virtual ~Component() = default;
 
             virtual sf::Vector2f getSize    () const = 0;
+            virtual sf::Vector2f getPosition() const = 0;
 
             virtual void setPosition        (const sf::Vector2f& pos){}
 

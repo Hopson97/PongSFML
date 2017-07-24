@@ -30,9 +30,13 @@ namespace GUI
             void update         (float dt);
             void draw           (sf::RenderWindow& window);
 
+            void setXOffsetPosition(float x_pos);
+
         private:
             std::vector<std::unique_ptr<Component>> m_components;
+
             sf::Vector2f m_basePosition;
+            //sf::Vector2f m_offsetPosition;
 
             sf::RectangleShape m_base;
             void update_base_size(float y_size);

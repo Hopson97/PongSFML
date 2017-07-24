@@ -2,8 +2,9 @@
 
 // GAME TITLE OBJECT //
 
-GameTitle::GameTitle(const std::string& title, sf::Vector2i position)
+GameTitle::GameTitle(const std::string& title, sf::Vector2f position)
 {
+    m_position = position;
     for (unsigned i = 0; i < title.length(); i++)
     {
         int x = position.x + (i*(LETTER_FONT+LETTER_OFFSET));
@@ -33,6 +34,11 @@ void GameTitle::draw(sf::RenderWindow& window)
 sf::Vector2f GameTitle::getSize () const
 {
     return {0, 200};
+}
+
+sf::Vector2f GameTitle::getPosition() const
+{
+    return this->m_position;
 }
 
 

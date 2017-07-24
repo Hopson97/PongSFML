@@ -46,6 +46,8 @@ namespace State
     {
         m_shader_time += dt;
         m_background_shader.setUniform("t", m_shader_time);
+
+        m_frontMenu.setXOffsetPosition(m_shader_time*200);
         m_frontMenu.update(dt);
 
         m_gameTitle->update(dt);
@@ -69,7 +71,7 @@ namespace State
 
     void StateMenu::initMenus()
     {
-        m_gameTitle = std::make_unique<GameTitle>("ExtremePong", sf::Vector2i(210,30));
+        m_gameTitle = std::make_unique<GameTitle>("ExtremePong", sf::Vector2f(210,30));
         m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
 
         m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
