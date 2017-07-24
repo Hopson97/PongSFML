@@ -6,10 +6,7 @@
 
 #include "../GUI/TextBox.h"
 
-namespace
-{
-    std::string test;
-}
+#include "SPlaying.h"
 
 namespace State
 {
@@ -70,10 +67,20 @@ namespace State
     void StateMenu::initMenus()
     {
         m_gameTitle = std::make_unique<GameTitle>("ExtremePong", sf::Vector2i(210,30));
-        m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
+        m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", m_ipAddress);
 
-        m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
-        m_frontMenu.addComponent<GUI::Button>("Connect", []() { return; });
+        m_frontMenu.addComponent<GUI::Button>("Host",  [&]()
+        {
+            m_pApplication->pushState<StatePlaying>(*m_pApplication);
+        });
+
+        m_frontMenu.addComponent<GUI::Button>("Connect", [&]()
+        {
+            if (!m_ipAddress.empty())
+            {
+                m_pApplication->pushState<StatePlaying>(*m_pApplication, m_ipAddress);
+            }
+        });
 
         m_footer.setFont(ResourceHolder::getFont("imagine_font"));
         m_footer.setString("A game made by the Hopson Server");
