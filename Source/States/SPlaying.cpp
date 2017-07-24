@@ -15,6 +15,16 @@ StatePlaying::StatePlaying(Application& application)
     animation.addFrames({16, 16}, {0, 0}, 4, sf::seconds(0.5));
 }
 
+StatePlaying::StatePlaying(Application& application, const sf::IpAddress& address)
+:   StateBase (application)
+{
+    m_sprite.setTexture(&ResourceHolder::getTexure("test"));
+    m_sprite.setSize({32, 32});
+
+    animation.addFrames({16, 16}, {0, 0}, 4, sf::seconds(0.5));
+}
+
+
 void StatePlaying::handleInput()
 {
 

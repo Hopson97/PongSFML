@@ -32,9 +32,6 @@ namespace State
             sf::RectangleShape quad;
             float m_shader_time = 0.0f;
 
-            std::unique_ptr<GUI::Button> m_host_button;
-            std::unique_ptr<GUI::Button> m_connect_button;
-
             // Bottom Right Label
             sf::Text m_footer;
     };

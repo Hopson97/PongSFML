@@ -5,10 +5,13 @@
 
 #include "SBase.h"
 
+#include  <SFML/Network.hpp>
+
 class StatePlaying : public StateBase
 {
     public:
         StatePlaying(Application& application);
+        StatePlaying(Application& application, const sf::IpAddress& address);
 
         void handleInput    ();
         void handleEvent    (sf::Event e);
