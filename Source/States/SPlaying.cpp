@@ -22,6 +22,10 @@ namespace State
         m_sprite.setSize({32, 32});
 
         animation.addFrames({16, 16}, {0, 0}, 4, sf::seconds(0.5));
+
+        // IF HOST
+        host_thread = new sf::Thread(&StatePlaying::host_waitForPlayer, this);
+        host_thread->launch();
     }
 
     void StatePlaying::handleInput()
@@ -49,5 +53,19 @@ namespace State
     {
         window.draw(m_noticeText);
         window.draw(m_sprite);
+    }
+
+    void StatePlaying::host_waitForPlayer()
+    {
+        sf::TcpListener listener;
+        listener.listen(6969);
+        listener.accept(m_tcp_socket);
+        std::cout << "Client connect: " << m_tcp_socket.getRemoteAddress() << std::endl;
+    }
+
+    StatePlaying::~StatePlaying()
+    {
+        host_thread->wait();
+        delete host_thread;
     }
 }

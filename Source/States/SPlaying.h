@@ -2,6 +2,9 @@
 #define SPLAYING_INCLUDED
 
 #include "../Application.h"
+#include "SFML/Network.hpp"
+#include "SFML/System.hpp"
+#include <iostream>
 
 #include "SBase.h"
 
@@ -18,6 +21,7 @@ namespace State
     {
         public:
             StatePlaying(Application& application);
+            ~StatePlaying();
 
             void handleInput    ();
             void handleEvent    (sf::Event e);
@@ -26,6 +30,9 @@ namespace State
             void draw           (sf::RenderWindow& window);
 
         private:
+            sf::Mutex m_globalMutex;
+            sf::TcpSocket m_tcp_socket;
+
             std::string player_name;
             std::string opponent_name;
 
@@ -34,6 +41,9 @@ namespace State
             // WAITING FOR PLAYER
             sf::Text m_noticeText;
             sf::Text m_waitingForPlayerText;
+
+            void host_waitForPlayer();
+            sf::Thread* host_thread;
     };
 }
 
