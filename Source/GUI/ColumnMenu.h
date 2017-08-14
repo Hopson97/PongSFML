@@ -13,7 +13,7 @@ namespace GUI
     class ColumnMenu
     {
         public:
-            ColumnMenu(const sf::RenderWindow& window);
+            ColumnMenu(const sf::RenderWindow& window, float x_pos);
 
             template<typename C, typename... Args>
             void addComponent(Args&&... args)
@@ -40,6 +40,10 @@ namespace GUI
 
             sf::RectangleShape m_base;
             void update_base_size(float y_size);
+
+            float m_targetxpos = 0;
+            float m_xpos = 0;
+            void updateXOffsetPosition(float x_pos);
     };
 }
 

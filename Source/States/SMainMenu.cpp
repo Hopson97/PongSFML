@@ -9,13 +9,15 @@
 namespace
 {
     std::string test;
+    std::string ip;
 }
 
 namespace State
 {
     StateMenu::StateMenu(Application& application)
     :   StateBase   (application)
-    ,   m_frontMenu (application.getWindow())
+    ,   m_frontMenu (application.getWindow(), 0)
+    ,   m_ipMenu (application.getWindow(), -1280)
     {
         initMenus();
 
@@ -40,6 +42,7 @@ namespace State
     void StateMenu::handleEvent(sf::Event e)
     {
         m_frontMenu.handleEvents(e, m_pApplication->getWindow());
+        m_ipMenu.handleEvents(e, m_pApplication->getWindow());
     }
 
     void StateMenu::update(float dt)
@@ -47,8 +50,8 @@ namespace State
         m_shader_time += dt;
         m_background_shader.setUniform("t", m_shader_time);
 
-        m_frontMenu.setXOffsetPosition(m_shader_time*200);
         m_frontMenu.update(dt);
+        m_ipMenu.update(dt);
 
         m_gameTitle->update(dt);
     }
@@ -64,6 +67,7 @@ namespace State
         window.draw(quad, &m_background_shader);
 
         m_frontMenu.draw(window);
+        m_ipMenu.draw(window);
 
         window.draw(m_footer);
         m_gameTitle->draw(window);
@@ -72,13 +76,45 @@ namespace State
     void StateMenu::initMenus()
     {
         m_gameTitle = std::make_unique<GameTitle>("ExtremePong", sf::Vector2f(210,30));
-        m_frontMenu.addComponent<GUI::TextBox>("Enter IP Here!", test);
+        m_frontMenu.addComponent<GUI::TextBox>("Enter Your Nickname!", test);
 
-        m_frontMenu.addComponent<GUI::Button>("Host", []() { return; });
-        m_frontMenu.addComponent<GUI::Button>("Connect", []() { return; });
+        m_frontMenu.addComponent<GUI::Button>("Host", [&]()
+                                              {
+                                              return;
+                                              });
+        m_frontMenu.addComponent<GUI::Button>("Connect", [&]() {
+                                              m_ipMenu.setXOffsetPosition(0);
+                                              m_frontMenu.setXOffsetPosition(1280);
+                                              return;
+                                              });
 
         m_footer.setFont(ResourceHolder::getFont("imagine_font"));
-        m_footer.setString("A game made by the Hopson Server");
+        m_footer.setString("A game made by the Hopson & Bag");
         m_footer.setCharacterSize(24);
+
+        m_ipMenu.addComponent<GUI::TextBox>("Enter IP here!", ip);
+        m_ipMenu.addComponent<GUI::Button>("Start Game", [&]() {
+                                           this->validateIP(ip);
+                                           return;
+                                           });
+        /*m_ipMenu.addComponent<GUI::Button>("Back", [&]() {
+                                           m_ipMenu.setXOffsetPosition(-1280);
+                                           m_frontMenu.setXOffsetPosition(0);
+                                           return; });*/
+
+        m_ipMenu.setXOffsetPosition(-1280);
+    }
+
+    bool StateMenu::validateIP(const std::string& ip)
+    {
+        std::cout << "Connecting to " << ip << ":6969" << std::endl;
+
+        // connect
+        sf::TcpSocket test_socket;
+        sf::Socket::Status test_status = test_socket.connect(ip, 6969);
+
+        std::cout << "Status: " << test_status << std::endl;
+
+        return false;
     }
 }

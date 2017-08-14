@@ -3,11 +3,19 @@
 
 #include "SBase.h"
 
+#include "SFML/Network.hpp"
+
 #include "../GUI/ColumnMenu.h"
 #include "../GUI/GameTitle.h"
 #include "../GUI/Button.h"
 
 #include <memory>
+
+enum class Menu_States
+{
+    HOST_CONNECT,
+    NICKNAME
+};
 
 namespace State
 {
@@ -26,6 +34,7 @@ namespace State
             void initMenus();
 
             GUI::ColumnMenu m_frontMenu;
+            GUI::ColumnMenu m_ipMenu;
             std::unique_ptr<GameTitle> m_gameTitle;
 
             sf::Shader m_background_shader;
@@ -35,8 +44,12 @@ namespace State
             std::unique_ptr<GUI::Button> m_host_button;
             std::unique_ptr<GUI::Button> m_connect_button;
 
+            Menu_States m_states = Menu_States::HOST_CONNECT;
+
             // Bottom Right Label
             sf::Text m_footer;
+
+            bool validateIP(const std::string& ip);
     };
 }
 
