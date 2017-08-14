@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "States/SBase.h"
+#include "States/SPlaying.h"
 
 class Application
 {
@@ -23,6 +24,9 @@ class Application
 
         const sf::RenderWindow& getWindow() const;
 
+        void HostGame(const std::string& nickname);
+        std::string getNickname();
+
     private:
         void handleEvents();
         StateBase& currentState();
@@ -31,6 +35,8 @@ class Application
         std::vector<std::unique_ptr<StateBase>> m_states;
 
         sf::RenderWindow m_window;
+
+        std::string m_nickname;
 };
 
 #endif // APPLICATION_H

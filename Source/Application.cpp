@@ -84,3 +84,18 @@ const sf::RenderWindow& Application::getWindow() const
 {
     return m_window;
 }
+
+std::string Application::getNickname()
+{
+    return m_nickname;
+}
+
+void Application::HostGame(const std::string& nickname)
+{
+    if (nickname != "") {
+        this->m_nickname = "Player";
+    } else {
+        this->m_nickname = nickname;
+    }
+    pushState<State::StatePlaying>(*this);
+}

@@ -17,7 +17,7 @@ namespace State
     StateMenu::StateMenu(Application& application)
     :   StateBase   (application)
     ,   m_frontMenu (application.getWindow(), 0)
-    ,   m_ipMenu (application.getWindow(), -1280)
+    ,   m_ipMenu (application.getWindow(), -1283)
     {
         initMenus();
 
@@ -80,6 +80,7 @@ namespace State
 
         m_frontMenu.addComponent<GUI::Button>("Host", [&]()
                                               {
+                                              m_pApplication->HostGame(test);
                                               return;
                                               });
         m_frontMenu.addComponent<GUI::Button>("Connect", [&]() {
@@ -107,6 +108,7 @@ namespace State
 
     bool StateMenu::validateIP(const std::string& ip)
     {
+        // TODO: make this a new thread
         std::cout << "Connecting to " << ip << ":6969" << std::endl;
 
         // connect

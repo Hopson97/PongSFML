@@ -10,17 +10,23 @@ namespace GUI
         m_base.setSize(sf::Vector2f(600, 50));
 
         //m_offsetPosition = sf::Vector2f(0,0);
+
         m_xpos = x_pos;
         m_targetxpos = x_pos;
         this->updateXOffsetPosition(x_pos);
+        this->update(0.0f);
     }
 
     void ColumnMenu::handleEvents(sf::Event e, const sf::RenderWindow& win)
     {
-        for (auto& comp : m_components)
+        if (abs(m_xpos) < 2)
         {
-            comp->handleInput(e, win);
+            for (auto& comp : m_components)
+            {
+                comp->handleInput(e, win);
+            }
         }
+
     }
 
     void ColumnMenu::update(float dt)

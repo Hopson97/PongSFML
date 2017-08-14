@@ -4,39 +4,50 @@
 
 #include "../Animation.h"
 
-Animation animation;
-
-StatePlaying::StatePlaying(Application& application)
-:   StateBase (application)
+namespace State
 {
-    m_sprite.setTexture(&ResourceHolder::getTexure("test"));
-    m_sprite.setSize({32, 32});
+    Animation animation;
 
-    animation.addFrames({16, 16}, {0, 0}, 4, sf::seconds(0.5));
-}
+    StatePlaying::StatePlaying(Application& application)
+    :   StateBase (application)
+    {
+        player_name = m_pApplication->getNickname();
 
-void StatePlaying::handleInput()
-{
+        m_noticeText.setFont(ResourceHolder::getFont("imagine_font"));
+        std::string noticeText_temp = "Hey, " + player_name;
+        m_noticeText.setPosition(400, 10);
+        m_noticeText.setString(noticeText_temp);
 
-}
+        m_sprite.setTexture(&ResourceHolder::getTexure("test"));
+        m_sprite.setSize({32, 32});
 
-void StatePlaying::handleEvent(sf::Event e)
-{
+        animation.addFrames({16, 16}, {0, 0}, 4, sf::seconds(0.5));
+    }
 
-}
+    void StatePlaying::handleInput()
+    {
 
-void StatePlaying::update(float dt)
-{
-    m_sprite.setTextureRect(animation.getFrame());
-}
+    }
 
-void StatePlaying::fixedUpdate(float dt)
-{
+    void StatePlaying::handleEvent(sf::Event e)
+    {
 
-}
+    }
 
-void StatePlaying::draw(sf::RenderWindow& window)
-{
+    void StatePlaying::update(float dt)
+    {
 
-    window.draw(m_sprite);
+        m_sprite.setTextureRect(animation.getFrame());
+    }
+
+    void StatePlaying::fixedUpdate(float dt)
+    {
+
+    }
+
+    void StatePlaying::draw(sf::RenderWindow& window)
+    {
+        window.draw(m_noticeText);
+        window.draw(m_sprite);
+    }
 }
