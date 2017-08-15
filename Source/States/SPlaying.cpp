@@ -14,7 +14,7 @@ namespace State
         player_name = m_pApplication->getNickname();
 
         m_noticeText.setFont(ResourceHolder::getFont("imagine_font"));
-        std::string noticeText_temp = "Hey, " + player_name;
+        std::string noticeText_temp = "Player1: " + player_name;
         m_noticeText.setPosition(400, 10);
         m_noticeText.setString(noticeText_temp);
 

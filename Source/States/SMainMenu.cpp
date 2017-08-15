@@ -116,6 +116,10 @@ namespace State
         sf::Socket::Status test_status = test_socket.connect(ip, 6969);
 
         std::cout << "Status: " << test_status << std::endl;
+        if (test_status == sf::Socket::Done)
+        {
+            std::cout << "SUCCESS!" << std::endl;
+        }
 
         return false;
     }

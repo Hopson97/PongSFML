@@ -92,7 +92,7 @@ std::string Application::getNickname()
 
 void Application::HostGame(const std::string& nickname)
 {
-    if (nickname != "") {
+    if (nickname == "") {
         this->m_nickname = "Player";
     } else {
         this->m_nickname = nickname;
