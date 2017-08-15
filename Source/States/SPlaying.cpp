@@ -57,10 +57,22 @@ namespace State
 
     void StatePlaying::host_waitForPlayer()
     {
+        // WAIT FOR PLAYER
         sf::TcpListener listener;
         listener.listen(6969);
         listener.accept(m_tcp_socket);
         std::cout << "Client connect: " << m_tcp_socket.getRemoteAddress() << std::endl;
+
+        // SEND CONFIRMATION & PLAYER 1 NICKNAME
+        sf::Packet firstPacket;
+        firstPacket << "HPong" << player_name;
+
+        m_tcp_socket.send(firstPacket);
+
+        // RECEIVE PLAYER 2 NICKNAME
+        sf::Packet secondPacket;
+        m_tcp_socket.receive(secondPacket);
+
     }
 
     StatePlaying::~StatePlaying()

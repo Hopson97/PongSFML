@@ -119,6 +119,22 @@ namespace State
         if (test_status == sf::Socket::Done)
         {
             std::cout << "SUCCESS!" << std::endl;
+
+            sf::Packet hostFirstPacket;
+            std::string content;
+            test_socket.receive(hostFirstPacket);
+            if (hostFirstPacket >> content)
+            {
+                if (content == "HPong")
+                {
+                    hostFirstPacket >> content;
+                    if (!content.empty())
+                    {
+                        // First packet received success
+                        std::cout << "Joining " << content << "'s game..." << std::endl;
+                    }
+                }
+            }
         }
 
         return false;
